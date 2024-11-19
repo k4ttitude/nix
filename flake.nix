@@ -81,7 +81,7 @@
 
       services.jankyborders = {
         enable = true;
-	# inherit (import ./jankyborders) active_color inactive_color width;
+	inherit (import ./jankyborders.nix) active_color inactive_color width;
       };
 
       # Necessary for using flakes on this system.
