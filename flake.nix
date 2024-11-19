@@ -29,12 +29,13 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-	[
-	  pkgs.mkalias
-	  pkgs.neovim
-	  pkgs.tmux
-	  pkgs.fish
-	  pkgs.obsidian
+	with pkgs; [
+	  mkalias
+	  neovim
+	  tmux
+	  fish
+	  obsidian
+	  jankyborders
         ];
 
       homebrew = {
@@ -72,7 +73,16 @@
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
-      services.aerospace.enable = true;
+
+      services.aerospace = {
+        enable = true;
+        settings = import ./aerospace.nix;
+      };
+
+      services.jankyborders = {
+        enable = true;
+	# inherit (import ./jankyborders) active_color inactive_color width;
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
