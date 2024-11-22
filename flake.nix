@@ -6,22 +6,15 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    home-manager = { 
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    # homebrew-core = {
-    #   url = "github:homebrew/homebrew-core";
-    #   flake = false;
-    # };
-    # homebrew-cask = {
-    #   url = "github:homebrew/homebrew-cask";
-    #   flake = false;
-    # };
-    # homebrew-bundle = {
-    #   url = "github:homebrew/homebrew-bundle";
-    #   flake = false;
-    # };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
     configuration = { config, pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
@@ -44,6 +37,7 @@
 	  "mas"
 	];
 	casks = [
+	  "arc"
 	  "kitty"
 	  "nikitabobko/tap/aerospace"
 	];
@@ -89,7 +83,6 @@
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
-      # programs.fish.enable = true;
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
@@ -137,18 +130,35 @@
     darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            # Apple Silicon Only
-            enableRosetta = true;
-            # User owning the Homebrew prefix
-            user = "kattitude";
+
+	nix-homebrew.darwinModules.nix-homebrew
+	{
+	  nix-homebrew = {
+	    enable = true;
+	    # Apple Silicon Only
+	    enableRosetta = true;
+	    # User owning the Homebrew prefix
+	    user = "kattitude";
 	    # Automatically migrate existing Homebrew installations
 	    autoMigrate = true;
-          };
-        }
+	  };
+	}
+
+	#(home-manager.lib.homeManagerConfiguration {
+        #  pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
+        #  modules = [
+        #    {
+        #      programs.kitty = {
+        #        enable = true;
+        #        settings = {
+        #          confirm_os_window_close = 0;
+        #          hide_window_decorations = "titlebar-only";
+        #        };
+        #      };
+        #    }
+        #  ];
+        #})
+
       ];
     };
 
