@@ -18,6 +18,12 @@
   let
     configuration = { config, pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Auto upgrade nix package and the daemon service.
+      # nix.package = pkgs.nix;
+      services.nix-daemon.enable = true;
+      nix.settings.experimental-features = "nix-command flakes";
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -49,6 +55,52 @@
 	onActivation.cleanup = "zap";
       };
 
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 5;
+
+      system.defaults = {
+      	NSGlobalDomain = {
+	  AppleInterfaceStyle = "Dark";
+          InitialKeyRepeat = 15;
+          KeyRepeat = 2;
+          "com.apple.swipescrolldirection" = false;
+	};
+        dock = {
+          autohide = true;
+          mineffect = "scale";
+          persistent-apps = [
+            "/Applications/Arc.app"
+          ];
+        };
+	finder = {
+	  FXPreferredViewStyle = "clmv";
+	  _FXShowPosixPathInTitle = true;
+	  QuitMenuItem = true;
+	  ShowPathbar = true;
+	  ShowStatusBar = true;
+	};
+	trackpad = {
+	  Clicking = true;
+	  TrackpadThreeFingerDrag = true;
+	};
+      };
+
+      system.keyboard = {
+	enableKeyMapping = true;
+	remapCapsLockToControl = true;
+      };
+
+      security.pam.enableSudoTouchIdAuth = true;
+
+      users.users.kattitude = {
+        name = "kattitude";
+	home = "/Users/kattitude";
+      };
+
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
           name = "system-applications";
@@ -69,70 +121,20 @@
           done
         '';
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
 
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      programs.fish.enable = true;
 
       imports = [ 
         ./apps/aerospace.nix
 	./apps/jankyborders.nix
 	./apps/zsh.nix
-	./apps/fish.nix
 	./apps/tmux.nix
+	./apps/fish.nix
       ];
 
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
-      system.defaults = {
-      	NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        NSGlobalDomain.InitialKeyRepeat = 15;
-        NSGlobalDomain.KeyRepeat = 2;
-        NSGlobalDomain."com.apple.swipescrolldirection" = false;
-        dock = {
-          autohide = true;
-          mineffect = "scale";
-          persistent-apps = [
-            "/Applications/Arc.app"
-          ];
-        };
-	finder = {
-	  FXPreferredViewStyle = "clmv";
-	  _FXShowPosixPathInTitle = true;
-	  QuitMenuItem = true;
-	  ShowPathbar = true;
-	  ShowStatusBar = true;
-	};
-
-	trackpad.Clicking = true;
-	trackpad.TrackpadThreeFingerDrag = true;
-      };
-      system.keyboard = {
-	enableKeyMapping = true;
-	remapCapsLockToControl = true;
-      };
-
-      security.pam.enableSudoTouchIdAuth = true;
-
-      users.users.kattitude = {
-        name = "kattitude";
-	home = "/Users/kattitude";
-      };
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
@@ -159,7 +161,6 @@
       ];
     };
 
-    # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."mac".pkgs;
   };
 }

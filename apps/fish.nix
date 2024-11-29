@@ -11,11 +11,28 @@
 
   programs.fish = {
     enable = true;
+
+	  #  plugins = with pkgs; [
+	  # #    { name = "z"; src = fetchFromGitHub {
+	  # #        owner = "jethrokuan";
+	  # # repo = "z";
+	  # # # rev = "";
+	  # # # sha256 = "";
+	  # #      };
+	  # #    }
+	  #    { name = "plugin-git"; src = fishPlugins.plugin-git.src; }
+	  #    { name = "fishtape"; src = fishPlugins.fishtape.src; }
+	  #    { name = "fzf-fish"; src = fishPlugins.fzf-fish.src; }
+	  #    { name = "fzf"; src = fishPlugins.fzf.src; }
+	  #    { name = "z"; src = fishPlugins.z.src; }
+	  #  ];
+
     shellAliases = {
       g = "git";
       p = "pnpm";
       nv = "nvim";
     };
+
     interactiveShellInit = ''
       set -gx PAGER less
       set -gx EDITOR nvim

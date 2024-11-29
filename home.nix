@@ -1,22 +1,14 @@
 { pkgs, lib, ... }:
 
 {
-  home.stateVersion = "24.11";
+  home.stateVersion = "24.05";
 
   systemd.user.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  home.packages = with pkgs; [
-    kitty
-    alacritty
+  imports = [
+    ./apps/kitty.nix
+    # ./apps/fish.nix
   ];
-
-  programs.kitty = {
-    enable = true;
-    settings = {
-      confirm_os_window_close = 0;
-      hide_window_decorations = "titlebar-only";
-    };
-  };
 }
