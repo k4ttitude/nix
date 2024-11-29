@@ -23,7 +23,7 @@
 	  #    { name = "plugin-git"; src = fishPlugins.plugin-git.src; }
 	  #    { name = "fishtape"; src = fishPlugins.fishtape.src; }
 	  #    { name = "fzf-fish"; src = fishPlugins.fzf-fish.src; }
-	  #    { name = "fzf"; src = fishPlugins.fzf.src; }
+	  #    { name = "fzf"; src = fzf.src; }
 	  #    { name = "z"; src = fishPlugins.z.src; }
 	  #  ];
 

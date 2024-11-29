@@ -30,9 +30,9 @@
       environment.systemPackages =
 	with pkgs; [
 	  mkalias
-	  neovim
-	  tmux
 	  fish
+	  tmux
+	  neovim
 	  obsidian
 	  jankyborders
 
@@ -121,9 +121,6 @@
           done
         '';
 
-
-      programs.fish.enable = true;
-
       imports = [ 
         ./apps/aerospace.nix
 	./apps/jankyborders.nix
@@ -156,6 +153,7 @@
 	{
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
+	  home-manager.backupFileExtension = "bak";
 	  home-manager.users.kattitude = import ./home.nix;
         }
       ];

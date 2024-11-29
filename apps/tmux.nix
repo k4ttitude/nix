@@ -5,10 +5,13 @@
     enable = true;
     enableMouse = true;
     enableVim = true;
+    # terminal = "xterm-256color";
+    # historyLimit = 100000;
+    # plugins = with pkgs; [ tmuxPlugins.better-mouse-mode ];
+
     extraConfig = ''
       bind ` last-window
     
-        # Length of the history
         set -g history-limit 100000
         
         # Use xterm-256color
