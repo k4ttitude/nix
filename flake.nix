@@ -29,6 +29,10 @@
 	  fish
 	  obsidian
 	  jankyborders
+
+	  openjdk11
+
+	  pdftk
         ];
 
       homebrew = {
@@ -40,6 +44,7 @@
 	  "arc"
 	  "kitty"
 	  "nikitabobko/tap/aerospace"
+	  "openkey"
 	];
 	onActivation.cleanup = "zap";
       };
@@ -68,21 +73,10 @@
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
-      services.aerospace = {
-        enable = true;
-        settings = import ./aerospace.nix;
-      };
-
-      services.jankyborders = {
-        enable = true;
-	inherit (import ./jankyborders.nix) active_color inactive_color width;
-      };
-
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
+      imports = [ ./aerospace.nix ./jankyborders.nix ./zsh.nix ./fish.nix ./tmux.nix ];
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
@@ -114,7 +108,14 @@
             "/Applications/Arc.app"
           ];
         };
-	finder.FXPreferredViewStyle = "clmv";
+	finder = {
+	  FXPreferredViewStyle = "clmv";
+	  _FXShowPosixPathInTitle = true;
+	  QuitMenuItem = true;
+	  ShowPathbar = true;
+	  ShowStatusBar = true;
+	};
+
 	trackpad.Clicking = true;
 	trackpad.TrackpadThreeFingerDrag = true;
       };
@@ -122,6 +123,8 @@
 	enableKeyMapping = true;
 	remapCapsLockToControl = true;
       };
+
+      security.pam.enableSudoTouchIdAuth = true;
     };
   in
   {
@@ -144,20 +147,20 @@
 	  };
 	}
 
-	#(home-manager.lib.homeManagerConfiguration {
-        #  pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
-        #  modules = [
-        #    {
-        #      programs.kitty = {
-        #        enable = true;
-        #        settings = {
-        #          confirm_os_window_close = 0;
-        #          hide_window_decorations = "titlebar-only";
-        #        };
-        #      };
-        #    }
-        #  ];
-        #})
+	# (home-manager.lib.homeManagerConfiguration {
+	#         pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
+	#         modules = [
+	#           {
+	#             programs.kitty = {
+	#               enable = true;
+	#               settings = {
+	#                 confirm_os_window_close = 0;
+	#                 hide_window_decorations = "titlebar-only";
+	#               };
+	#             };
+	#           }
+	#         ];
+	#        })
 
       ];
     };
