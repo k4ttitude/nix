@@ -1,8 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
+
 {
+  home.stateVersion = "24.11";
+
   systemd.user.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  home.packages = with pkgs; [
+    kitty
+    alacritty
+  ];
 
   programs.kitty = {
     enable = true;

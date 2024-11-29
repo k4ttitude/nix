@@ -76,10 +76,13 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      imports = [ ./aerospace.nix ./jankyborders.nix ./zsh.nix ./fish.nix ./tmux.nix ];
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
+      imports = [ 
+        ./apps/aerospace.nix
+	./apps/jankyborders.nix
+	./apps/zsh.nix
+	./apps/fish.nix
+	./apps/tmux.nix
+      ];
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -96,11 +99,6 @@
         NSGlobalDomain.InitialKeyRepeat = 15;
         NSGlobalDomain.KeyRepeat = 2;
         NSGlobalDomain."com.apple.swipescrolldirection" = false;
-	# controlcenter.AirDrop = false;
-	# controlcenter.BatteryShowPercentage = false;
-	# controlcenter.Bluetooth = false;
-	# controlcenter.Display = false;
-	# controlcenter.FocusModes = true;
         dock = {
           autohide = true;
           mineffect = "scale";
@@ -125,6 +123,11 @@
       };
 
       security.pam.enableSudoTouchIdAuth = true;
+
+      users.users.kattitude = {
+        name = "kattitude";
+	home = "/Users/kattitude";
+      };
     };
   in
   {
@@ -147,21 +150,12 @@
 	  };
 	}
 
-	# (home-manager.lib.homeManagerConfiguration {
-	#         pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
-	#         modules = [
-	#           {
-	#             programs.kitty = {
-	#               enable = true;
-	#               settings = {
-	#                 confirm_os_window_close = 0;
-	#                 hide_window_decorations = "titlebar-only";
-	#               };
-	#             };
-	#           }
-	#         ];
-	#        })
-
+        home-manager.darwinModules.home-manager
+	{
+	  home-manager.useGlobalPkgs = true;
+	  home-manager.useUserPackages = true;
+	  home-manager.users.kattitude = import ./home.nix;
+        }
       ];
     };
 
