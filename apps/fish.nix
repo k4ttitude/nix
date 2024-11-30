@@ -1,31 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, environment, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    fishPlugins.plugin-git
-    fishPlugins.fishtape
-    fishPlugins.fzf-fish
-    fzf
-    fishPlugins.z
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   fishPlugins.plugin-git
+  #   fishPlugins.fishtape
+  #   fishPlugins.fzf-fish
+  #   fzf
+  #   fishPlugins.z
+  # ];
 
   programs.fish = {
     enable = true;
 
-	  #  plugins = with pkgs; [
-	  # #    { name = "z"; src = fetchFromGitHub {
-	  # #        owner = "jethrokuan";
-	  # # repo = "z";
-	  # # # rev = "";
-	  # # # sha256 = "";
-	  # #      };
-	  # #    }
-	  #    { name = "plugin-git"; src = fishPlugins.plugin-git.src; }
-	  #    { name = "fishtape"; src = fishPlugins.fishtape.src; }
-	  #    { name = "fzf-fish"; src = fishPlugins.fzf-fish.src; }
-	  #    { name = "fzf"; src = fzf.src; }
-	  #    { name = "z"; src = fishPlugins.z.src; }
-	  #  ];
+    plugins = with pkgs; [
+      { name = "plugin-git"; src = fishPlugins.plugin-git.src; }
+      { name = "fishtape"; src = fishPlugins.fishtape.src; }
+      { name = "fzf-fish"; src = fishPlugins.fzf-fish.src; }
+      # { name = "fzf"; src = fzf.src; }
+      { name = "z"; src = fishPlugins.z.src; }
+    ];
 
     shellAliases = {
       g = "git";

@@ -3,10 +3,10 @@
 {
   home.stateVersion = "24.05";
 
-  # home.packages = with pkgs; [
-  #   fish
-  #   tmux
-  # ];
+  home.packages = with pkgs; [
+    fish
+    # tmux
+  ];
 
   systemd.user.sessionVariables = {
     EDITOR = "nvim";
@@ -14,7 +14,7 @@
 
   imports = [
     ./apps/kitty.nix
-    # ./apps/fish.nix
+    ./apps/fish.nix
     # ./apps/tmux.nix
   ];
 }

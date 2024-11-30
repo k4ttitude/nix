@@ -30,8 +30,7 @@
       environment.systemPackages =
 	with pkgs; [
 	  mkalias
-	  fish
-	  tmux
+	  fzf
 	  neovim
 	  obsidian
 	  jankyborders
@@ -125,8 +124,6 @@
         ./apps/aerospace.nix
 	./apps/jankyborders.nix
 	./apps/zsh.nix
-	./apps/tmux.nix
-	./apps/fish.nix
       ];
 
     };
