@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [
     fish
-    # tmux
+    tmux
   ];
 
   systemd.user.sessionVariables = {
@@ -15,6 +15,6 @@
   imports = [
     ./apps/kitty.nix
     ./apps/fish.nix
-    # ./apps/tmux.nix
+    ./apps/tmux.nix
   ];
 }
