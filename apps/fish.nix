@@ -1,6 +1,7 @@
-{ pkgs, environment, ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = [ pkgs.oh-my-posh ];
   # environment.systemPackages = with pkgs; [
   #   fishPlugins.plugin-git
   #   fishPlugins.fishtape
@@ -12,12 +13,11 @@
   programs.fish = {
     enable = true;
 
-    plugins = with pkgs; [
-      { name = "plugin-git"; src = fishPlugins.plugin-git.src; }
-      { name = "fishtape"; src = fishPlugins.fishtape.src; }
-      { name = "fzf-fish"; src = fishPlugins.fzf-fish.src; }
-      # { name = "fzf"; src = fzf.src; }
-      { name = "z"; src = fishPlugins.z.src; }
+    plugins = with pkgs.fishPlugins; [
+      { name = "plugin-git"; src = plugin-git.src; }
+      { name = "fishtape"; src = fishtape.src; }
+      { name = "fzf-fish"; src = fzf-fish.src; }
+      { name = "z"; src = z.src; }
     ];
 
     shellAliases = {
@@ -55,6 +55,14 @@
       bind -M fzf -m insert l _fzf_search_git_log
       bind -M fzf -m insert s _fzf_search_git_status
       bind -M fzf -m insert \e cancel-commandline
+
+      # oh-my-posh init fish | source
     '';
+  };
+
+  programs.oh-my-posh = {
+    enable = true;
+    enableFishIntegration = true;
+    useTheme = "catppuccin_mocha";
   };
 }

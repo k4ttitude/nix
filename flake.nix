@@ -73,7 +73,9 @@
           mineffect = "scale";
           persistent-apps = [
             "/Applications/Arc.app"
+            "/Applications/kitty.app"
           ];
+	  show-recents = false;
         };
 	finder = {
 	  FXPreferredViewStyle = "clmv";
