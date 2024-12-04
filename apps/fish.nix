@@ -2,13 +2,6 @@
 
 {
   home.packages = [ pkgs.oh-my-posh ];
-  # environment.systemPackages = with pkgs; [
-  #   fishPlugins.plugin-git
-  #   fishPlugins.fishtape
-  #   fishPlugins.fzf-fish
-  #   fzf
-  #   fishPlugins.z
-  # ];
 
   programs.fish = {
     enable = true;
@@ -18,6 +11,16 @@
       { name = "fishtape"; src = fishtape.src; }
       { name = "fzf-fish"; src = fzf-fish.src; }
       { name = "z"; src = z.src; }
+      { name = "bass"; src = bass.src; }
+      {
+        name = "fish-nvm";
+	src = pkgs.fetchFromGitHub {
+          owner = "FabioAntunes";
+	  repo = "fish-nvm";
+          rev = "57ddb124cc0b6ae7e2825855dd34f33b8492a35b";
+          sha256 = "00gbvzh4l928rbnyjaqi8fc6dcpr0q4m6rd265gxfy4aqph6j7f0";
+        };
+      }
     ];
 
     shellAliases = {
