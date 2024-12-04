@@ -36,6 +36,7 @@
 	  jankyborders
 
 	  openjdk11
+	  pyenv
 
 	  pdftk
         ];
