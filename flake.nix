@@ -55,6 +55,10 @@
 	onActivation.cleanup = "zap";
       };
 
+      fonts.packages = with pkgs; [
+        (nerdfonts.override { fonts = [ "Meslo" ]; })
+      ];
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
