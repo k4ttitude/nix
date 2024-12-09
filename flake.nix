@@ -25,34 +25,39 @@
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
 
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-	with pkgs; [
-	  mkalias
-	  fzf
-	  neovim
-	  obsidian
-	  jankyborders
-
-	  openjdk11
-	  pyenv
-
-	  pdftk
+      environment.systemPackages = with pkgs;
+        [
+          # docker
+          docker-compose
+	        fzf
+          ghostscript
+	        jankyborders
+          maven
+	        mkalias
+	        neovim
+	        obsidian
+	        openjdk11
+	        pdftk
+	        pyenv
+          rustup
         ];
 
       homebrew = {
         enable = true;
-	brews = [
-	  "mas"
-	];
-	casks = [
-	  "arc"
-	  "kitty"
-	  "nikitabobko/tap/aerospace"
-	  "openkey"
-	];
-	onActivation.cleanup = "zap";
+	      brews = [
+	        "mas"
+          # node canvas
+          "pkg-config" "cairo" "pango" "libpng" "giflib" "jpeg" "librsvg"
+	      ];
+	      casks = [
+	        "arc"
+	        "kitty"
+	        "nikitabobko/tap/aerospace"
+	        "openkey"
+          "docker"
+	      ];
+        masApps = { Xcode = 497799835; };
+	      onActivation.cleanup = "zap";
       };
 
       fonts.packages = with pkgs; [
@@ -68,11 +73,11 @@
 
       system.defaults = {
       	NSGlobalDomain = {
-	  AppleInterfaceStyle = "Dark";
+	        AppleInterfaceStyle = "Dark";
           InitialKeyRepeat = 15;
           KeyRepeat = 2;
           "com.apple.swipescrolldirection" = false;
-	};
+	      };
         dock = {
           autohide = true;
           mineffect = "scale";
@@ -80,31 +85,31 @@
             "/Applications/Arc.app"
             "/Applications/kitty.app"
           ];
-	  show-recents = false;
+	        show-recents = false;
         };
-	finder = {
-	  FXPreferredViewStyle = "clmv";
-	  _FXShowPosixPathInTitle = true;
-	  QuitMenuItem = true;
-	  ShowPathbar = true;
-	  ShowStatusBar = true;
-	};
-	trackpad = {
-	  Clicking = true;
-	  TrackpadThreeFingerDrag = true;
-	};
+	      finder = {
+	        FXPreferredViewStyle = "clmv";
+	        _FXShowPosixPathInTitle = true;
+	        QuitMenuItem = true;
+	        ShowPathbar = true;
+	        ShowStatusBar = true;
+	      };
+	      trackpad = {
+	        Clicking = true;
+	        TrackpadThreeFingerDrag = true;
+	      };
       };
 
       system.keyboard = {
-	enableKeyMapping = true;
-	remapCapsLockToControl = true;
+	      enableKeyMapping = true;
+	      remapCapsLockToControl = true;
       };
 
       security.pam.enableSudoTouchIdAuth = true;
 
       users.users.kattitude = {
         name = "kattitude";
-	home = "/Users/kattitude";
+	      home = "/Users/kattitude";
       };
 
       system.activationScripts.applications.text = let
@@ -129,8 +134,8 @@
 
       imports = [ 
         ./apps/aerospace.nix
-	./apps/jankyborders.nix
-	./apps/zsh.nix
+	      ./apps/jankyborders.nix
+	      ./apps/zsh.nix
       ];
 
     };
@@ -140,25 +145,25 @@
       modules = [ 
         configuration
 
-	nix-homebrew.darwinModules.nix-homebrew
-	{
-	  nix-homebrew = {
-	    enable = true;
-	    # Apple Silicon Only
-	    enableRosetta = true;
-	    # User owning the Homebrew prefix
-	    user = "kattitude";
-	    # Automatically migrate existing Homebrew installations
-	    autoMigrate = true;
-	  };
-	}
+	      nix-homebrew.darwinModules.nix-homebrew
+	      {
+	        nix-homebrew = {
+	          enable = true;
+	          # Apple Silicon Only
+	          enableRosetta = true;
+	          # User owning the Homebrew prefix
+	          user = "kattitude";
+	          # Automatically migrate existing Homebrew installations
+	          autoMigrate = true;
+	        };
+	      }
 
         home-manager.darwinModules.home-manager
-	{
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.backupFileExtension = "bak";
-	  home-manager.users.kattitude = import ./home.nix;
+	      {
+	        home-manager.useGlobalPkgs = true;
+	        home-manager.useUserPackages = true;
+	        home-manager.backupFileExtension = "bak";
+	        home-manager.users.kattitude = import ./home.nix;
         }
       ];
     };
