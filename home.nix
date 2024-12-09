@@ -1,7 +1,7 @@
 { lib, pkgs, osConfig, ... }:
 
 {
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
     fish
@@ -16,6 +16,7 @@
     ./apps/kitty.nix
     ./apps/fish.nix
     ./apps/tmux.nix
+    ./apps/nvim/default.nix
     ./apps/pyenv.nix
   ];
 }
