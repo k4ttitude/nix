@@ -78,6 +78,7 @@
       mode.kommand.binding = {
         esc     = "mode main";
         s       = "mode service";
+        m       = "mode move";
         shift-m = "mode merge";
   
         h = [ "focus left" "mode main" ];
@@ -106,8 +107,8 @@
         slash = [ "layout tiles horizontal vertical" "mode main" ];
         comma = [ "layout accordion horizontal vertical" "mode main" ];
 
-	c = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id net.kovidgoyal.kitty --format %{window-id} | head -n 1)'' "mode main" ];
-	b = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id company.thebrowser.Browser --format %{window-id} | head -n 1)'' "mode main" ];
+	      c = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id net.kovidgoyal.kitty --format %{window-id} | head -n 1)'' "mode main" ];
+	      b = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id company.thebrowser.Browser --format %{window-id} | head -n 1)'' "mode main" ];
       };
       
       mode.service.binding = {
@@ -115,6 +116,17 @@
         r = ["flatten-workspace-tree" "mode main"]; # reset layout
         f = ["layout floating tiling" "mode main"]; # Toggle between floating and tiling layout
         w = ["close-all-windows-but-current" "mode main"];
+      };
+
+      mode.move.binding = {
+        "h" = [ "move left" "mode main" ];
+        "j" = [ "move down" "mode main" ];
+        "k" = [ "move up" "mode main" ];
+        "l" = [ "move right" "mode main" ];
+        "1" = [ "move-node-to-workspace 1" "mode main" ];
+        "2" = [ "move-node-to-workspace 2" "mode main" ];
+        "3" = [ "move-node-to-workspace 3" "mode main" ];
+        "4" = [ "move-node-to-workspace 4" "mode main" ];
       };
   
       mode.merge.binding = {
