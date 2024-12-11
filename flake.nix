@@ -51,10 +51,11 @@
 	      ];
 	      casks = [
 	        "arc"
+          "docker"
 	        "kitty"
 	        "nikitabobko/tap/aerospace"
 	        "openkey"
-          "docker"
+          "postman"
 	      ];
         masApps = { Xcode = 497799835; };
 	      onActivation.cleanup = "zap";
