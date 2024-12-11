@@ -56,6 +56,7 @@
 	        "nikitabobko/tap/aerospace"
 	        "openkey"
           "postman"
+          "tableplus"
 	      ];
         masApps = { Xcode = 497799835; };
 	      onActivation.cleanup = "zap";
