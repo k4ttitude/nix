@@ -107,8 +107,8 @@
         slash = [ "layout tiles horizontal vertical" "mode main" ];
         comma = [ "layout accordion horizontal vertical" "mode main" ];
 
-	      c = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id net.kovidgoyal.kitty --format %{window-id} | head -n 1)'' "mode main" ];
-	      b = [ ''exec-and-forget aerospace focus --window-id $(aerospace list-windows --monitor all --app-bundle-id company.thebrowser.Browser --format %{window-id} | head -n 1)'' "mode main" ];
+	      c = [ "exec-and-forget open -a 'kitty'" "mode main" ];
+	      b = [ "exec-and-forget open -a 'Arc'" "mode main" ];
       };
       
       mode.service.binding = {

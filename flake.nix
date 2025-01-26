@@ -27,17 +27,19 @@
 
       environment.systemPackages = with pkgs;
         [
+          bun
           # docker
           docker-compose
+          flyctl
 	        fzf
           ghostscript
 	        jankyborders
           maven
 	        mkalias
 	        neovim
-	        obsidian
 	        openjdk11
 	        pdftk
+          pnpm
 	        pyenv
           rustup
         ];
@@ -51,14 +53,17 @@
 	      ];
 	      casks = [
 	        "arc"
+          "cursor"
           "docker"
 	        "kitty"
 	        "nikitabobko/tap/aerospace"
+          "obsidian"
 	        "openkey"
           "postman"
+          "steam"
           "tableplus"
 	      ];
-        masApps = { Xcode = 497799835; };
+        masApps = { Xcode = 497799835; NordVPN = 905953485; };
 	      onActivation.cleanup = "zap";
       };
 
