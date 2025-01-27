@@ -13,10 +13,11 @@
   };
 
   imports = [
-    ./apps/kitty.nix
     ./apps/fish.nix
-    ./apps/tmux.nix
+    ./apps/kitty.nix
     ./apps/nvim/default.nix
     ./apps/pyenv.nix
+    ./apps/rustup.nix
+    ./apps/tmux.nix
   ];
 }

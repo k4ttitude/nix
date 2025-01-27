@@ -14,9 +14,9 @@
       { name = "bass"; src = bass.src; }
       {
         name = "fish-nvm";
-	src = pkgs.fetchFromGitHub {
+	      src = pkgs.fetchFromGitHub {
           owner = "FabioAntunes";
-	  repo = "fish-nvm";
+	        repo = "fish-nvm";
           rev = "57ddb124cc0b6ae7e2825855dd34f33b8492a35b";
           sha256 = "00gbvzh4l928rbnyjaqi8fc6dcpr0q4m6rd265gxfy4aqph6j7f0";
         };
