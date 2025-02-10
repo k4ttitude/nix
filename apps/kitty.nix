@@ -4,6 +4,9 @@
   programs.kitty = {
     enable = true;
     settings = {
+      allow_remote_control = true;
+      enabled_layouts = "tall";
+
       window_padding_width = 4;
 
       # font

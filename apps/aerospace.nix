@@ -73,6 +73,11 @@
       # Fallback value (if you omit the key): mode.main.binding = {}
       mode.main.binding = {
         cmd-ctrl-k = "mode kommand";
+
+        alt-h = [ "focus left" ];
+        alt-j = [ "focus down" ];
+        alt-k = [ "focus up" ];
+        alt-l = [ "focus right" ];
       };
   
       mode.kommand.binding = {
@@ -80,6 +85,7 @@
         s       = "mode service";
         m       = "mode move";
         shift-m = "mode merge";
+        t       = "mode toggle";
   
         h = [ "focus left" "mode main" ];
         j = [ "focus down" "mode main" ];
@@ -114,7 +120,6 @@
       mode.service.binding = {
         esc = ["reload-config" "mode main"];
         r = ["flatten-workspace-tree" "mode main"]; # reset layout
-        f = ["layout floating tiling" "mode main"]; # Toggle between floating and tiling layout
         w = ["close-all-windows-but-current" "mode main"];
       };
 
@@ -134,6 +139,10 @@
         j = ["join-with down" "mode main"];
         k = ["join-with up" "mode main"];
         l = ["join-with right" "mode main"];
+      };
+
+      mode.toggle.binding = {
+        f = ["layout floating tiling" "mode main"]; # Toggle between floating and tiling layout
       };
   
       # All possible keys:

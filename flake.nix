@@ -42,6 +42,7 @@
           pnpm
 	        pyenv
           rustup
+          yazi
         ];
 
       homebrew = {
@@ -56,6 +57,7 @@
           "cursor"
           "docker"
 	        "kitty"
+          "libreoffice"
 	        "nikitabobko/tap/aerospace"
           "obsidian"
 	        "openkey"
