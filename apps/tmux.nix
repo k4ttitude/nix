@@ -26,18 +26,18 @@ in
 
     plugins = with pkgs.tmuxPlugins; [
       better-mouse-mode
-      # sensible
-      resurrect
       {
         plugin = catppuccin;
-	extraConfig = ''
+	      extraConfig = ''
           set -g @catppuccin_flavour "mocha" # or frappe, macchiato, mocha
           set -g @catppuccin_status_background "none"
           set -g @catppuccin_window_status_style "none"
           set -g @catppuccin_pane_status_enabled "off"
           set -g @catppuccin_pane_border_status "off"
-	'';
+	      '';
       }
+      resurrect
+      vim-tmux-navigator
     ];
 
     extraConfig = ''
