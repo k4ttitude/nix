@@ -64,6 +64,7 @@
           "postman"
           "steam"
           "tableplus"
+          "zen-browser"
 	      ];
         masApps = { Xcode = 497799835; NordVPN = 905953485; };
 	      onActivation.cleanup = "zap";

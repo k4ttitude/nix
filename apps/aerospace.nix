@@ -114,7 +114,7 @@
         comma = [ "layout accordion horizontal vertical" "mode main" ];
 
 	      c = [ "exec-and-forget open -a 'kitty'" "mode main" ];
-	      b = [ "exec-and-forget open -a 'Arc'" "mode main" ];
+	      b = [ "exec-and-forget open -a 'Zen Browser'" "mode main" ];
       };
       
       mode.service.binding = {
