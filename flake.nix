@@ -2,8 +2,8 @@
   description = "k4tt nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = { 
@@ -70,9 +70,7 @@
 	      onActivation.cleanup = "zap";
       };
 
-      fonts.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "Meslo" ]; })
-      ];
+      fonts.packages = with pkgs; [ nerd-fonts.meslo-lg ];
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;

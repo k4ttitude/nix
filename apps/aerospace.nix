@@ -168,6 +168,15 @@
       #     activate
       # end tell'
       # '''
+      on-window-detected = [
+        {
+          "if" = {
+            app-id = "app.zen-browser.zen";
+            window-title-regex-substring = "^Picture-in-Picture$";
+          };
+          run = ["layout floating"];
+        }
+      ];
     };
   };
 }
