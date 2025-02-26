@@ -64,9 +64,12 @@
           "postman"
           "steam"
           "tableplus"
-          "zen-browser"
+          { name = "zen-browser"; greedy = true; }
 	      ];
-        masApps = { Xcode = 497799835; NordVPN = 905953485; };
+        masApps = {
+          NordVPN = 905953485;
+          Xcode = 497799835;
+        };
 	      onActivation.cleanup = "zap";
       };
 
@@ -90,7 +93,7 @@
           autohide = true;
           mineffect = "scale";
           persistent-apps = [
-            "/Applications/Arc.app"
+            "/Applications/Zen Browser.app"
             "/Applications/kitty.app"
           ];
 	        show-recents = false;
