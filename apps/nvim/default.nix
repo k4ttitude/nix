@@ -13,9 +13,9 @@
       stylua
     ];
 
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    # plugins = with pkgs.vimPlugins; [
+    #   lazy-nvim
+    # ];
 
     extraLuaConfig =
       ''
