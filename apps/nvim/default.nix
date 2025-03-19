@@ -6,13 +6,16 @@
     ripgrep
   ];
 
-  home.activation.cloneNvimConfig = 
+  home.activation.copyNvimConfig = 
     let 
       nvimConfigPath = "~/.config/nvim";
-      repo = "https://github.com/k4ttitude/nvim.git";
-      ref = "main";
+      nvimSetup = pkgs.writeShellScriptBin "setup-nvim" ''
+        rm -rf ${nvimConfigPath}
+        mkdir -p ${nvimConfigPath}
+        cp -r ${toString ./.}/nvim/* ${nvimConfigPath}/
+      '';
     in
     lib.hm.dag.entryAfter ["writeBoundary"] ''
-      $DRY_RUN_CMD ${pkgs.git}/bin/git clone -b ${ref} ${repo} ${nvimConfigPath}
+      $DRY_RUN_CMD ${nvimSetup}/bin/setup-nvim
     '';
 }
