@@ -20,12 +20,12 @@
     extraLuaConfig =
       ''
         vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
-        require("config.lazy")
+	require('config.lazy')
       '';
   };
 
   xdg.configFile."nvim/lua" = {
     recursive = true;
-    source = ./lua;
+    source = ./nvim/lua;
   };
 }
