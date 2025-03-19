@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     fd
@@ -8,15 +8,6 @@
 
   programs.neovim = {
     enable = true;
-    extraPackages = with pkgs; [
-      lua-language-server
-      stylua
-    ];
-
-    # plugins = with pkgs.vimPlugins; [
-    #   lazy-nvim
-    # ];
-
     extraLuaConfig =
       ''
         vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
@@ -26,6 +17,10 @@
 
   xdg.configFile."nvim" = {
     recursive = true;
-    source = ./nvim;
+    source = builtins.fetchGit {
+      url = "https://github.com/k4ttitude/nvim.git";
+      ref = "main";
+      rev = "424d197ed34a25317f4955ea4e1255646369fab0";
+    };
   };
 }
