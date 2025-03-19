@@ -6,16 +6,13 @@
     ripgrep
   ];
 
-  home.activation.copyNvimConfig = 
+  home.activation.linkNvimConfig = 
     let 
       nvimConfigPath = "~/.config/nvim";
-      nvimSetup = pkgs.writeShellScriptBin "setup-nvim" ''
-        rm -rf ${nvimConfigPath}
-        mkdir -p ${nvimConfigPath}
-        cp -r ${toString ./.}/nvim/* ${nvimConfigPath}/
-      '';
+      localNvimConfig = "$HOME/nix/apps/nvim/nvim";
     in
     lib.hm.dag.entryAfter ["writeBoundary"] ''
-      $DRY_RUN_CMD ${nvimSetup}/bin/setup-nvim
+      $DRY_RUN_CMD rm -rf ${nvimConfigPath}
+      $DRY_RUN_CMD ln -s ${localNvimConfig} ${nvimConfigPath}
     '';
 }
