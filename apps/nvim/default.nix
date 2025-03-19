@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     fd
@@ -6,21 +6,13 @@
     ripgrep
   ];
 
-  programs.neovim = {
-    enable = true;
-    extraLuaConfig =
-      ''
-        vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
-	      require('config.lazy')
-      '';
-  };
-
-  xdg.configFile."nvim" = {
-    recursive = true;
-    source = builtins.fetchGit {
-      url = "https://github.com/k4ttitude/nvim.git";
+  home.activation.cloneNvimConfig = 
+    let 
+      nvimConfigPath = "~/.config/nvim";
+      repo = "https://github.com/k4ttitude/nvim.git";
       ref = "main";
-      rev = "424d197ed34a25317f4955ea4e1255646369fab0";
-    };
-  };
+    in
+    lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD ${pkgs.git}/bin/git clone -b ${ref} ${repo} ${nvimConfigPath}
+    '';
 }
