@@ -75,7 +75,8 @@ in
       # set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
 
       set -g status-right-length 100
-      set -g status-right "#[fg=#{@thm_fg} bold]TMUX (#S)"
+      set -g status-right "#[fg=#{@thm_blue}]#{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
+      set -ga status-right "#[fg=#{@thm_fg} bold](#S)"
       set -ga status-right "#{?client_prefix,#[fg=#{@thm_bg} bg=#{@thm_red} bold] PREFIX ,#{?#{==:#{pane_mode},copy-mode},#[fg=#{@thm_yellow} bold]COPY ,#[fg=#{@thm_green} bold] NORMAL }}"
 
       setw -g pane-border-status top
