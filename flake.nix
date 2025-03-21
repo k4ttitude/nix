@@ -27,6 +27,7 @@
 
       environment.systemPackages = with pkgs;
         [
+          aichat
           bun
           # docker
           docker-compose

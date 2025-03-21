@@ -46,6 +46,7 @@ in
       set -ga terminal-overrides ",xterm-256color:RGB"
 
       set-option -g allow-passthrough on
+      set-option -g detach-on-destroy off
       set-option -ga update-environment TERM
       set-option -ga update-environment TERM_PROGRAM
 
