@@ -35,6 +35,7 @@
       set -gx VISUAL nvim
 
       fish_vi_key_bindings
+      set -g fish_vi_force_cursor 1
 
       bind yy fish_clipboard_copy
       bind p fish_clipboard_paste
