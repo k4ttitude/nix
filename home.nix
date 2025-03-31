@@ -13,7 +13,7 @@
   };
 
   imports = [
-    ./apps/fish.nix
+    ./apps/fish/default.nix
     ./apps/kitty.nix
     ./apps/nvim/default.nix
     ./apps/pyenv.nix

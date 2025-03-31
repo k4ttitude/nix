@@ -29,7 +29,6 @@
         [
           aichat
           bun
-          # docker
           docker-compose
           flyctl
 	        fzf
@@ -48,18 +47,21 @@
 
       homebrew = {
         enable = true;
+        taps = [
+          "nikitabobko/tap"
+        ];
 	      brews = [
 	        "mas"
           # node canvas
           "pkg-config" "cairo" "pango" "libpng" "giflib" "jpeg" "librsvg"
 	      ];
 	      casks = [
-	        "arc"
+          "chromium"
           "cursor"
           "docker"
 	        "kitty"
           "libreoffice"
-	        "nikitabobko/tap/aerospace"
+	        "aerospace"
           "obsidian"
 	        "openkey"
           "postman"

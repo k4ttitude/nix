@@ -5,6 +5,12 @@
 
   programs.fish = {
     enable = true;
+    
+    functions = {
+      _fzf_search_zoxide = {
+        body = builtins.readFile ./functions/_fzf_search_zoxide.fish;
+      };
+    };
 
     plugins = with pkgs.fishPlugins; [
       { name = "plugin-git"; src = plugin-git.src; }
@@ -47,7 +53,6 @@
       bind -M insert \ck 'clear; commandline -f repaint'
       bind -M normal \ck 'clear; commandline -f repaint'
 
-
       # fzf key bindings
       _fzf_uninstall_bindings
       bind -m fzf \cf ""
@@ -58,6 +63,7 @@
       bind -M fzf -m insert d _fzf_search_directory
       bind -M fzf -m insert l _fzf_search_git_log
       bind -M fzf -m insert s _fzf_search_git_status
+      bind -M fzf -m insert z _fzf_search_zoxide
       bind -M fzf -m insert \e cancel-commandline
 
       # oh-my-posh init fish | source
