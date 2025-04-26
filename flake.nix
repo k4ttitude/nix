@@ -17,13 +17,11 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
     configuration = { config, pkgs, ... }: {
+      nix.enable = true;
+      nix.settings.experimental-features = "nix-command flakes";
+
       nixpkgs.config.allowUnfree = true;
       nixpkgs.hostPlatform = "aarch64-darwin";
-
-      # Auto upgrade nix package and the daemon service.
-      # nix.package = pkgs.nix;
-      services.nix-daemon.enable = true;
-      nix.settings.experimental-features = "nix-command flakes";
 
       environment.systemPackages = with pkgs;
         [
@@ -39,6 +37,7 @@
 	        neovim
 	        openjdk11
 	        pdftk
+          pngpaste
           pnpm
 	        pyenv
           rustup
@@ -59,7 +58,7 @@
           "chromium"
           "cursor"
           "docker"
-	        "kitty"
+          "kitty"
           "libreoffice"
 	        "aerospace"
           "obsidian"
@@ -83,7 +82,7 @@
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
-      system.stateVersion = 5;
+      system.stateVersion = 6;
 
       system.defaults = {
       	NSGlobalDomain = {
@@ -119,7 +118,7 @@
 	      remapCapsLockToControl = true;
       };
 
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       users.users.kattitude = {
         name = "kattitude";
@@ -150,6 +149,7 @@
         ./apps/aerospace.nix
 	      ./apps/jankyborders.nix
 	      ./apps/zsh.nix
+        ./apps/kitty.nix
       ];
 
     };
