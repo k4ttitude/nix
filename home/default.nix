@@ -1,4 +1,4 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "25.05";
@@ -13,10 +13,10 @@
   };
 
   imports = [
-    ./apps/fish/default.nix
-    ./apps/nvim/default.nix
-    ./apps/pyenv.nix
-    ./apps/rustup.nix
-    ./apps/tmux.nix
+    ../apps/fish/default.nix
+    ../apps/nvim/default.nix
+    ../apps/pyenv.nix
+    ../apps/rustup.nix
+    ../apps/tmux.nix
   ];
 }

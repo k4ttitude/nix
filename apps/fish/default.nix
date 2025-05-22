@@ -64,9 +64,6 @@
       bind -M fzf -m insert s _fzf_search_git_status
       bind -M fzf -m insert z _fzf_search_zoxide
       bind -M fzf -m insert \e cancel-commandline
-
-      # environment variables
-      set -gx JAVA_23_HOME ${pkgs.openjdk23}
     '';
 
     
