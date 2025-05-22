@@ -7,9 +7,7 @@
     enable = true;
     
     functions = {
-      _fzf_search_zoxide = {
-        body = builtins.readFile ./functions/_fzf_search_zoxide.fish;
-      };
+      _fzf_search_zoxide = builtins.readFile ./functions/_fzf_search_zoxide.fish;
     };
 
     plugins = with pkgs.fishPlugins; [
@@ -55,6 +53,7 @@
 
       # fzf key bindings
       _fzf_uninstall_bindings
+
       bind -m fzf \cf ""
       bind -M insert -m fzf \cf ""
 
@@ -66,8 +65,11 @@
       bind -M fzf -m insert z _fzf_search_zoxide
       bind -M fzf -m insert \e cancel-commandline
 
-      # oh-my-posh init fish | source
+      # environment variables
+      set -gx JAVA_23_HOME ${pkgs.openjdk23}
     '';
+
+    
   };
 
   programs.oh-my-posh = {

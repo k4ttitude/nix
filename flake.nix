@@ -32,10 +32,10 @@
 	        fzf
           ghostscript
 	        jankyborders
+          lazydocker
           maven
 	        mkalias
 	        neovim
-	        openjdk11
 	        pdftk
           pngpaste
           pnpm
@@ -66,7 +66,7 @@
           "postman"
           "steam"
           "tableplus"
-          { name = "zen-browser"; greedy = true; }
+          { name = "zen"; greedy = true; }
 	      ];
         masApps = {
           NordVPN = 905953485;
@@ -150,6 +150,7 @@
 	      ./apps/jankyborders.nix
 	      ./apps/zsh.nix
         ./apps/kitty.nix
+        ./stacks/java.nix
       ];
 
     };
