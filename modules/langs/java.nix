@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs;
     [
       maven
-      # openjdk11
+      openjdk11
       openjdk23
     ];
 
@@ -23,6 +23,7 @@
   home-manager.users.${vars.user} = {
     programs.fish.interactiveShellInit = ''
       set -gx JAVA_23_HOME ${pkgs.openjdk23}
+      set -gx JAVA_11_HOME ${pkgs.openjdk11}
     '';
   };
 }

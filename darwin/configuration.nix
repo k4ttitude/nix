@@ -10,7 +10,9 @@
     [
       aichat
       bun
+      deluge # torrent
       docker-compose
+      doppler
       flyctl
       fzf
       ghostscript
@@ -35,6 +37,7 @@
       "mas"
       # node canvas
       "pkg-config" "cairo" "pango" "libpng" "giflib" "jpeg" "librsvg"
+      "qmk/qmk/qmk"
     ];
     casks = [
       "chromium"
@@ -48,6 +51,7 @@
       "postman"
       "steam"
       "tableplus"
+      "vlc"
       { name = "zen"; greedy = true; }
     ];
     masApps = {

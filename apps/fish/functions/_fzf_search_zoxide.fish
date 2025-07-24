@@ -14,8 +14,8 @@ function _fzf_search_zoxide --description "Search zoxide directory history and a
         set -f cmdline (commandline)
         set -f cursor (commandline -C)
 
-        # If there's already content, add a space before appending
-        if test -n "$cmdline"
+        # If there's already content and it doesn't end with a space, add a space before appending
+        if test -n "$cmdline" && not string match -q "* " "$cmdline"
             set -f dir_selected " $dir_selected"
         end
 
@@ -25,3 +25,5 @@ function _fzf_search_zoxide --description "Search zoxide directory history and a
 
     commandline --function repaint
 end
+
+_fzf_search_zoxide

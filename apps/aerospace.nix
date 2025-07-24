@@ -97,8 +97,8 @@
         shift-k = [ "move up" "mode main" ];
         shift-l = [ "move right" "mode main" ];
   
-        shift-minus = [ "resize smart -50" "mode main" ];
-        shift-equal = [ "resize smart +50" "mode main" ];
+        shift-minus = [ "resize smart -50" ];
+        shift-equal = [ "resize smart +50" ];
   
         "1" = [ "workspace 1" "mode main" ];
         "2" = [ "workspace 2" "mode main" ];
@@ -124,6 +124,7 @@
       };
 
       mode.move.binding = {
+        esc = "mode main";
         "h" = [ "move left" "mode main" ];
         "j" = [ "move down" "mode main" ];
         "k" = [ "move up" "mode main" ];
@@ -135,14 +136,16 @@
       };
   
       mode.merge.binding = {
-        h = ["join-with left" "mode main"];
-        j = ["join-with down" "mode main"];
-        k = ["join-with up" "mode main"];
-        l = ["join-with right" "mode main"];
+        esc = "mode main";
+        h   = ["join-with left" "mode main"];
+        j   = ["join-with down" "mode main"];
+        k   = ["join-with up" "mode main"];
+        l   = ["join-with right" "mode main"];
       };
 
       mode.toggle.binding = {
-        f = ["layout floating tiling" "mode main"]; # Toggle between floating and tiling layout
+        esc = "mode main";
+        f   = ["layout floating tiling" "mode main"]; # Toggle between floating and tiling layout
       };
   
       # All possible keys:

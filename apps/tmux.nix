@@ -41,6 +41,9 @@ in
     ];
 
     extraConfig = ''
+      unbind C-b
+      set-option -g prefix C-t
+
       bind ` last-window
 
       set -ga terminal-overrides ",xterm-256color:RGB"
