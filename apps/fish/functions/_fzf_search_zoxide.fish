@@ -25,5 +25,3 @@ function _fzf_search_zoxide --description "Search zoxide directory history and a
 
     commandline --function repaint
 end
-
-_fzf_search_zoxide

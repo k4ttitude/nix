@@ -7,13 +7,14 @@
     enable = true;
     
     functions = {
-      _fzf_search_zoxide = builtins.readFile ./functions/_fzf_search_zoxide.fish;
+      # _fzf_search_zoxide = builtins.readFile ./functions/_fzf_search_zoxide.fish;
     };
 
     plugins = with pkgs.fishPlugins; [
       { name = "plugin-git"; src = plugin-git.src; }
       { name = "fishtape"; src = fishtape.src; }
       { name = "fzf-fish"; src = fzf-fish.src; }
+      { name = "fzf-fish-zoxide"; src = pkgs.writeTextDir "functions/_fzf_search_zoxide.fish" (builtins.readFile ./functions/_fzf_search_zoxide.fish); }
       { name = "z"; src = z.src; }
       { name = "bass"; src = bass.src; }
       {
@@ -32,6 +33,8 @@
       p = "pnpm";
       nv = "nvim";
     };
+
+    shellInit = "";
 
     interactiveShellInit = ''
       set -gx PAGER less
@@ -64,9 +67,12 @@
       bind -M fzf -m insert s _fzf_search_git_status
       bind -M fzf -m insert z _fzf_search_zoxide
       bind -M fzf -m insert \e cancel-commandline
-    '';
 
-    
+      # kitty_scrollback_edit_command_buffer
+      bind --mode default \ce edit_command_buffer
+      bind --mode visual \ce edit_command_buffer
+      bind --mode insert \ce edit_command_buffer
+    '';
   };
 
   programs.oh-my-posh = {

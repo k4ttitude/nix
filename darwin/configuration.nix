@@ -40,9 +40,9 @@
       "qmk/qmk/qmk"
     ];
     casks = [
-      "chromium"
       "cursor"
       "docker"
+      "google-chrome@dev"
       "kitty"
       "libreoffice"
       "aerospace"
