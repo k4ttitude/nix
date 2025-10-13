@@ -16,16 +16,18 @@
       flyctl
       fzf
       ghostscript
+      gitlab-ci-local
+      gitlab-runner
       jankyborders
       lazydocker
       mkalias
       neovim
-      pdftk
       pngpaste
       pnpm
       pyenv
       rustup
       yazi
+      zoxide
     ];
 
   homebrew = {
@@ -35,14 +37,15 @@
     ];
     brews = [
       "mas"
+      "pdftk-java"
       # node canvas
       "pkg-config" "cairo" "pango" "libpng" "giflib" "jpeg" "librsvg"
       "qmk/qmk/qmk"
     ];
     casks = [
       "cursor"
-      "docker"
-      "google-chrome@dev"
+      "docker-desktop"
+      "google-chrome"
       "kitty"
       "libreoffice"
       "aerospace"
@@ -137,5 +140,7 @@
     ../apps/zsh.nix
     ../apps/kitty.nix
     ../modules/langs/java.nix
+    ../modules/pnpm.nix
+    ../modules/psql.nix
   ];
 }

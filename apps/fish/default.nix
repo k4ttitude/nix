@@ -15,7 +15,7 @@
       { name = "fishtape"; src = fishtape.src; }
       { name = "fzf-fish"; src = fzf-fish.src; }
       { name = "fzf-fish-zoxide"; src = pkgs.writeTextDir "functions/_fzf_search_zoxide.fish" (builtins.readFile ./functions/_fzf_search_zoxide.fish); }
-      { name = "z"; src = z.src; }
+      { name = "dbui"; src = pkgs.writeTextDir "functions/dbui.fish" (builtins.readFile ./functions/dbui.fish); }
       { name = "bass"; src = bass.src; }
       {
         name = "fish-nvm";
@@ -72,6 +72,8 @@
       bind --mode default \ce edit_command_buffer
       bind --mode visual \ce edit_command_buffer
       bind --mode insert \ce edit_command_buffer
+
+      zoxide init fish | source
     '';
   };
 

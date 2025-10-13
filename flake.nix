@@ -29,7 +29,7 @@
     darwinConfigurations = (
       import ./darwin/default.nix {
         inherit (nixpkgs) lib;
-        inherit inputs nix-darwin nixpkgs nix-homebrew home-manager vars;
+        inherit inputs nix-darwin nixpkgs nix-homebrew home-manager vars self;
       }
     );
     darwinPackages = self.darwinConfigurations."mac".pkgs;
