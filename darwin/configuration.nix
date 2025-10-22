@@ -73,6 +73,8 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
 
+  system.primaryUser = vars.user;
+
   system.defaults = {
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
