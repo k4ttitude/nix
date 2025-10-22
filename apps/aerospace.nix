@@ -78,6 +78,9 @@
         alt-j = [ "focus down" ];
         alt-k = [ "focus up" ];
         alt-l = [ "focus right" ];
+
+        cmd-h = []; # Disable "hide application"
+        cmd-alt-h = []; # Disable "hide others"
       };
   
       mode.kommand.binding = {
