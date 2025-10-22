@@ -1,6 +1,6 @@
 function _fzf_search_zoxide --description "Search zoxide directory history and append selection to commandline"
     set -f dir_selected (
-        z -l | \
+        zoxide query -l | \
         _fzf_wrapper --prompt="Zoxide> " \
                     --query (commandline --current-token) \
                     --preview="ls -l {}" \

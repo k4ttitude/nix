@@ -1,6 +1,6 @@
 { inputs, nix-darwin, nix-homebrew, home-manager, vars, self, ... }:
 let
-  revision = self.ref or self.dirtyRev;
+  revision = self.ref or self.dirtyRev or "unknown";
 in
 {
   mac = nix-darwin.lib.darwinSystem {
