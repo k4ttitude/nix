@@ -32,6 +32,8 @@
       g = "git";
       p = "pnpm";
       nv = "nvim";
+      lzg = "lazygit";
+      lzd = "lazydocker";
     };
 
     shellInit = "";
